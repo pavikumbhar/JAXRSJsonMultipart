@@ -73,7 +73,7 @@ public class UploadFileServiceGF {
 @Path("/uploadFormDataParam")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.MULTIPART_FORM_DATA)
-public Resspose postForm(
+public Response postForm(
     @DefaultValue("true") @FormDataParam("enabled") boolean enabled,
     @FormDataParam("firstName") String firstName,
     @FormDataParam("lastName") String lastName,
@@ -86,10 +86,10 @@ public Resspose postForm(
     
     writeToFileServer(file,fileDisposition.getFileName());
     
-    Resspose resspose=new Resspose();
-    resspose.setFlag("1");
-    resspose.setMsg("success");
-    return resspose;
+    Response response=new Response();
+    response.setFlag("1");
+    response.setMsg("success");
+    return response;
 }
 
 private String writeToFileServer(InputStream inputStream, String fileName)  {
@@ -119,7 +119,7 @@ private String writeToFileServer(InputStream inputStream, String fileName)  {
         return qualifiedUploadFilePath;
     }
 
-class Resspose{
+class Response{
 private String msg;
 private String flag;
 
